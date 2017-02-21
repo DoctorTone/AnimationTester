@@ -1,0 +1,30 @@
+/* Framework styles */
+
+#WebGL-output {
+    /* set margin to 0 and overflow to hidden, to go fullscreen */
+    margin: 0;
+    overflow: hidden;
+}
+
+.noDisplay {
+    display: none;
+}
+.centred {
+    text-align: center;
+}
+.infoPanel {
+    position: absolute;
+}
+.scroll {
+    overflow: auto;
+}
+#notSupported {
+    background: #a9434a;
+    border-radius: 15px;
+    color: black;
+    padding: 2%;
+}
+#notSupported {
+    top: 25%;
+    left: 35%;
+}
