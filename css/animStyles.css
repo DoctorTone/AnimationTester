@@ -26,5 +26,6 @@
 }
 #notSupported {
     top: 25%;
-    left: 35%;
+    left: 33.333%;
+    width: 33.333%;
 }

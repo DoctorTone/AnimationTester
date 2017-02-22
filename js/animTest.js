@@ -31,13 +31,10 @@ AnimationApp.prototype.createScene = function() {
         _this.scenes[_this.currentScene].add(_this.skinnedMesh);
 
         //DEBUG
-        console.log("Skinned mesh = ", _this.skinnedMesh);
+        //console.log("Skinned mesh = ", _this.skinnedMesh);
 
         //DEBUG
-        var bone = _this.scenes[_this.currentScene].getObjectByName("Bone.011");
-        if(bone) {
-            bone.rotation.y -= Math.PI/4;
-        }
+        _this.bone = _this.scenes[_this.currentScene].getObjectByName("Bone.011");
     });
 
     this.loader.load("./models/Alien_Rigged_EyesRight.json", function(geometry, materials) {
@@ -50,6 +47,22 @@ AnimationApp.prototype.createScene = function() {
         _this.scenes[_this.currentScene].add(eyeMesh);
     });
 
+    //Objects to control movement
+    var sphereConfig = {
+        radius: 0.125,
+        widthSegments: 16,
+        heightSegments: 16,
+        colour: 0xff0000
+    };
+    var spherePositions = [
+        new THREE.Vector3(5, -1, 0)
+    ];
+    var movementSpheres = [];
+    var sphereGeom = new THREE.SphereBufferGeometry(sphereConfig.radius, sphereConfig.widthSegments, sphereConfig.heightSegments);
+    var sphereMat = new THREE.MeshLambertMaterial( {color: sphereConfig.colour});
+    var sphere = new THREE.Mesh(sphereGeom, sphereMat);
+    sphere.position.copy(spherePositions[0]);
+    this.scenes[this.currentScene].add(sphere);
 };
 
 AnimationApp.prototype.update = function() {
@@ -58,6 +71,10 @@ AnimationApp.prototype.update = function() {
 
 $(document).ready(function() {
     //Make sure we support WebGL
+    if ( ! Detector.webgl ) {
+        $('#notSupported').show();
+        return;
+    }
 
     //Initialise app
     var container = document.getElementById("WebGL-output");

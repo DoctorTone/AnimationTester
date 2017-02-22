@@ -166,7 +166,7 @@ BaseApp.prototype.createScene = function() {
 
 BaseApp.prototype.createCamera = function() {
 
-    this.defaultCamPos = new THREE.Vector3(0, 5, 10);
+    this.defaultCamPos = new THREE.Vector3(-3, 4, 7);
     this.camera = new THREE.PerspectiveCamera(45, this.container.clientWidth / window.innerHeight, 0.1, 5000 );
     this.camera.position.copy(this.defaultCamPos);
 
@@ -179,12 +179,16 @@ BaseApp.prototype.createControls = function() {
     this.controls.zoomSpeed = 1.0;
     this.controls.panSpeed = 1.0;
 
+    this.controls.noZoom = true;
+    this.controls.noPan = true;
+    this.controls.noRotate = true;
+
     this.controls.staticMoving = true;
     this.controls.dynamicDampingFactor = 0.3;
 
     this.controls.keys = [ 65, 83, 68 ];
 
-    var lookAt = new THREE.Vector3(0, 0, 0);
+    var lookAt = new THREE.Vector3(2, 2, 1);
     this.controls.setLookAt(lookAt);
 };
 
