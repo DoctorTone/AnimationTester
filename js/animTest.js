@@ -63,6 +63,7 @@ AnimationApp.prototype.createScene = function() {
     var sphere = new THREE.Mesh(sphereGeom, sphereMat);
     sphere.position.copy(spherePositions[0]);
     this.scenes[this.currentScene].add(sphere);
+    this.addDraggableObject(sphere);
 };
 
 AnimationApp.prototype.update = function() {

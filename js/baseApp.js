@@ -16,6 +16,7 @@ function BaseApp() {
     this.mouse = new THREE.Vector2();
     this.pickedObjects = [];
     this.selectedObject = null;
+    this.draggableObjects = [];
     this.hoverObjects = [];
     this.startTime = 0;
     this.elapsedTime = 0;
@@ -50,6 +51,7 @@ BaseApp.prototype.createRenderer = function() {
     this.container.appendChild( this.renderer.domElement );
     var _this = this;
 
+    /*
     this.container.addEventListener('mousedown', function(event) {
         _this.mouseClicked(event);
     }, false);
@@ -59,6 +61,7 @@ BaseApp.prototype.createRenderer = function() {
     this.container.addEventListener('mousemove', function(event) {
         _this.mouseMoved(event);
     }, false);
+    */
 
     window.addEventListener('keydown', function(event) {
         _this.keydown(event);
@@ -107,15 +110,9 @@ BaseApp.prototype.mouseClicked = function(event) {
     this.raycaster.setFromCamera(this.mouse, this.camera);
     var intersects = this.raycaster.intersectObjects( this.scenes[this.currentScene].children, true );
     if(intersects.length > 0) {
-        //Only want sprites for now
-        var i, numObjects = intersects.length;
-        for(i=0; i<numObjects; ++i) {
-            if(intersects[i].object.type !== "Sprite") continue;
-            this.selectedObject = intersects[i].object;
-            return;
-        }
-    } else {
-        this.selectedObject = null;
+        this.selectedObject = intersects[0].object;
+        //DEBUG
+        console.log("Picked = ", this.selectedObject);
     }
 };
 
@@ -164,6 +161,10 @@ BaseApp.prototype.createScene = function() {
     return this.scenes.length-1;
 };
 
+BaseApp.prototype.addDraggableObject = function(object) {
+    this.draggableObjects.push(object);
+};
+
 BaseApp.prototype.createCamera = function() {
 
     this.defaultCamPos = new THREE.Vector3(-3, 4, 7);
@@ -179,10 +180,6 @@ BaseApp.prototype.createControls = function() {
     this.controls.zoomSpeed = 1.0;
     this.controls.panSpeed = 1.0;
 
-    this.controls.noZoom = true;
-    this.controls.noPan = true;
-    this.controls.noRotate = true;
-
     this.controls.staticMoving = true;
     this.controls.dynamicDampingFactor = 0.3;
 
@@ -190,6 +187,17 @@ BaseApp.prototype.createControls = function() {
 
     var lookAt = new THREE.Vector3(2, 2, 1);
     this.controls.setLookAt(lookAt);
+
+    //Draggable
+    var _this = this;
+    this.dragControls = new THREE.DragControls(this.draggableObjects, this.camera, this.renderer.domElement);
+    this.dragControls.addEventListener( 'dragstart', function ( event ) {
+        //DEBUG
+        console.log("Object = ", event.object);
+        _this.controls.enabled = false;
+    } );
+
+    this.dragControls.addEventListener( 'dragend', function ( event ) { _this.controls.enabled = true; } );
 };
 
 BaseApp.prototype.setCamera = function(cameraProp) {
