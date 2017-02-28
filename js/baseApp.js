@@ -17,6 +17,7 @@ function BaseApp() {
     this.pickedObjects = [];
     this.selectedObject = null;
     this.draggableObjects = [];
+    this.draggedObject = null;
     this.hoverObjects = [];
     this.startTime = 0;
     this.elapsedTime = 0;
@@ -50,18 +51,6 @@ BaseApp.prototype.createRenderer = function() {
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.container.appendChild( this.renderer.domElement );
     var _this = this;
-
-    /*
-    this.container.addEventListener('mousedown', function(event) {
-        _this.mouseClicked(event);
-    }, false);
-    this.container.addEventListener('mouseup', function(event) {
-        _this.mouseClicked(event);
-    }, false);
-    this.container.addEventListener('mousemove', function(event) {
-        _this.mouseMoved(event);
-    }, false);
-    */
 
     window.addEventListener('keydown', function(event) {
         _this.keydown(event);
@@ -165,6 +154,14 @@ BaseApp.prototype.addDraggableObject = function(object) {
     this.draggableObjects.push(object);
 };
 
+BaseApp.prototype.setDraggedObject = function(object) {
+    this.draggedObject = object;
+};
+
+BaseApp.prototype.clearDraggedObject = function() {
+    this.draggedObject = null;
+};
+
 BaseApp.prototype.createCamera = function() {
 
     this.defaultCamPos = new THREE.Vector3(-3, 4, 7);
@@ -195,9 +192,13 @@ BaseApp.prototype.createControls = function() {
         //DEBUG
         console.log("Object = ", event.object);
         _this.controls.enabled = false;
+        _this.setDraggedObject(event.object);
     } );
 
-    this.dragControls.addEventListener( 'dragend', function ( event ) { _this.controls.enabled = true; } );
+    this.dragControls.addEventListener( 'dragend', function ( event ) {
+        _this.controls.enabled = true;
+        _this.clearDraggedObject();
+    });
 };
 
 BaseApp.prototype.setCamera = function(cameraProp) {

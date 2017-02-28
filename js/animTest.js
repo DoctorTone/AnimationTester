@@ -68,6 +68,12 @@ AnimationApp.prototype.createScene = function() {
 
 AnimationApp.prototype.update = function() {
     BaseApp.prototype.update.call(this);
+
+    //Check for dragged objects
+    if(this.draggedObject !== null) {
+        var scale = this.draggableObjects[0].position.x - 5;
+        this.bone.rotation.y = Math.PI * scale;
+    }
 };
 
 $(document).ready(function() {
