@@ -21,22 +21,32 @@ AnimationApp.prototype.createScene = function() {
     var _this = this;
 
     this.loader = new THREE.JSONLoader();
-    this.loader.load("./models/Alien_Rigged1.json", function(geometry, materials) {
+    this.loader.load("./models/Alien_Rigged2.json", function(geometry, materials) {
+
         for(var k in materials) {
             materials[k].skinning = true;
         }
+
+
 
         _this.skinnedMesh = new THREE.SkinnedMesh(geometry, new THREE.MultiMaterial(materials));
         //_this.skinnedMesh.scale.set(1, 1, 1);
         _this.scenes[_this.currentScene].add(_this.skinnedMesh);
 
+
         //DEBUG
         //console.log("Skinned mesh = ", _this.skinnedMesh);
 
         //DEBUG
-        _this.bone = _this.scenes[_this.currentScene].getObjectByName("Bone.011");
+        _this.bone = _this.scenes[_this.currentScene].getObjectByName("Bone.009");
+
+        /*
+        _this.bodyMesh = new THREE.Mesh(geometry, new THREE.MultiMaterial(materials));
+        _this.scenes[_this.currentScene].add(_this.bodyMesh);
+        */
     });
 
+    /*
     this.loader.load("./models/Alien_Rigged_EyesRight.json", function(geometry, materials) {
         var eyeMesh = new THREE.Mesh(geometry, new THREE.MultiMaterial(materials));
         _this.scenes[_this.currentScene].add(eyeMesh);
@@ -46,6 +56,7 @@ AnimationApp.prototype.createScene = function() {
         var eyeMesh = new THREE.Mesh(geometry, new THREE.MultiMaterial(materials));
         _this.scenes[_this.currentScene].add(eyeMesh);
     });
+    */
 
     //Objects to control movement
     var sphereConfig = {
