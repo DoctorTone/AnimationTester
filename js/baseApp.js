@@ -42,14 +42,11 @@ class BaseApp {
         this.renderer = new THREE.WebGLRenderer( {antialias : true, alpha: true});
         this.renderer.setClearColor(0x5c5f64, 1.0);
         this.renderer.shadowMapEnabled = true;
-        let isMSIE = /*@cc_on!@*/0;
 
-        let width = this.container.clientWidth;
-        if (isMSIE) {
-            // do IE-specific things
-            width = window.innerWidth;
-        }
-        this.renderer.setSize(window.innerWidth, window.innerHeight);
+        this.width = this.container.clientWidth;
+        this.height = window.innerHeight;
+
+        this.renderer.setSize(this.width, this.height);
         this.container.appendChild( this.renderer.domElement );
 
         window.addEventListener('keydown', event => {
@@ -113,10 +110,10 @@ class BaseApp {
 
     windowResize(event) {
         //Handle window resize
-        this.camera.aspect = window.innerWidth / window.innerHeight;
+        this.camera.aspect = this.width / this.height;
         this.camera.updateProjectionMatrix();
 
-        this.renderer.setSize( window.innerWidth, window.innerHeight);
+        this.renderer.setSize( this.width, this.height);
     }
 
     createScene() {

@@ -36,33 +36,10 @@ class AnimationApp extends BaseApp {
              _this.scenes[_this.currentScene].add(_this.bodyMesh);
              */
         });
-
-        //Objects to control movement
-        let sphereConfig = {
-            radius: 0.125,
-            widthSegments: 16,
-            heightSegments: 16,
-            colour: 0xff0000
-        };
-        let spherePositions = [
-            new THREE.Vector3(5, -1, 0)
-        ];
-        let movementSpheres = [];
-        let sphereGeom = new THREE.SphereBufferGeometry(sphereConfig.radius, sphereConfig.widthSegments, sphereConfig.heightSegments);
-        let sphereMat = new THREE.MeshLambertMaterial( {color: sphereConfig.colour});
-        let sphere = new THREE.Mesh(sphereGeom, sphereMat);
-        sphere.position.copy(spherePositions[0]);
-        this.scenes[this.currentScene].add(sphere);
-        this.addDraggableObject(sphere);
     }
 
     update() {
         super.update();
-        //Check for dragged objects
-        if(this.draggedObject !== null) {
-            let scale = this.draggableObjects[0].position.x - 5;
-            this.bone.rotation.y = Math.PI * scale;
-        }
     }
 }
 
@@ -79,6 +56,9 @@ $(document).ready(function() {
     app.init(container);
     //app.createGUI();
     app.createScene();
+
+    //Controls
+    $('#leftArm').slider();
 
     app.run();
 });

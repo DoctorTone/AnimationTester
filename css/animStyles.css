@@ -1,5 +1,10 @@
 /* Framework styles */
 
+body {
+    margin: 0;
+    overflow: hidden;
+    background-color: #5c5f64;
+}
 #WebGL-output {
     /* set margin to 0 and overflow to hidden, to go fullscreen */
     margin: 0;
@@ -28,4 +33,24 @@
     top: 25%;
     left: 33.333%;
     width: 33.333%;
+}
+.controls {
+    background-color: silver;
+    border-radius: 10px;
+    height: 100vh;
+}
+.container-fluid.no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+    padding-right: 0;
+    padding-left: 0;
+}
+.row.no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+}
+.row.no-gutters > [class^="col-"],
+.row.no-gutters > [class*=" col-"] {
+    padding-right: 0;
+    padding-left: 0;
 }

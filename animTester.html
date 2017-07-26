@@ -4,24 +4,36 @@
     <meta charset="UTF-8">
     <title>Animation Tester</title>
 
-    <script type="text/javascript" src="js/three84.js"></script>
+    <script type="text/javascript" src="js/three86.js"></script>
     <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
     <script type="text/javascript" src="js/DragControls.js"></script>
     <script type="text/javascript" src="js/TrackballControls.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-slider.min.js"></script>
     <script type="text/javascript" src="js/detector.js"></script>
-    <script type="text/javascript" src="js/baseApp.js?v=0.7"></script>
-    <script type="text/javascript" src="js/animTest.js?v=0.6"></script>
+    <script type="text/javascript" src="js/baseApp.js?v=0.8"></script>
+    <script type="text/javascript" src="js/animTest.js?v=0.8"></script>
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/bootstrap-slider.min.css?v=0.1">
     <link href="css/animStyles.css?v=0.1" rel="stylesheet" type="text/css">
 
 </head>
 <body>
 
 <!-- Div which will hold the Output -->
-<div id="WebGL-output">
+<div class="container-fluid no-gutters">
+    <div class="row no-gutters">
+        <div id="WebGL-output" class="col-md-10">
+
+        </div>
+        <div class="col-md-2 controls centred">
+            <p>Animation Controls</p>
+            <input id="leftArm" data-slider-id="leftArmSlider" type="text" data-slider-min="0"
+                    data-slider-max="1" data-slider-step="0.1" data-slider-value="0.5">
+        </div>
+    </div>
 </div>
 
 <div id="notSupported" class="infoPanel noDisplay">
