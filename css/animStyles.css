@@ -54,9 +54,11 @@ body {
     padding-right: 0;
     padding-left: 0;
 }
-.indent {
+.indentText p {
     margin-left: 5%;
+    text-align: left;
 }
-.infoText p {
-    float: left;
+.indentText div {
+    margin-bottom: 3%;
 }
+
