@@ -12,7 +12,7 @@
     <script type="text/javascript" src="js/bootstrap-slider.min.js"></script>
     <script type="text/javascript" src="js/detector.js"></script>
     <script type="text/javascript" src="js/baseApp.js?v=0.8"></script>
-    <script type="text/javascript" src="js/animTest.js?v=0.8"></script>
+    <script type="text/javascript" src="js/animTest.js?v=0.10"></script>
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
@@ -29,9 +29,16 @@
 
         </div>
         <div class="col-md-2 controls centred">
-            <p>Animation Controls</p>
-            <input id="leftArm" data-slider-id="leftArmSlider" type="text" data-slider-min="0"
-                    data-slider-max="1" data-slider-step="0.1" data-slider-value="0.5">
+            <div class="title">
+                <p>Animation Controls</p>
+            </div>
+            <div class="infoText">
+                <p>Left Arm</p>
+                <input id="leftArm" data-slider-id="leftArmSlider" type="text" data-slider-min="0"
+                       data-slider-max="1" data-slider-step="0.1" data-slider-value="0.5">
+            </div>
+            <input id="rightArm" data-slider-id="rightArmSlider" type="text" data-slider-min="-20"
+                   data-slider-max="20" data-slider-step="0.1" data-slider-value="0">
         </div>
     </div>
 </div>

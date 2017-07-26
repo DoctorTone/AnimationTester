@@ -9,6 +9,18 @@ class AnimationApp extends BaseApp {
         super();
     }
 
+    init(container) {
+        super.init(container);
+
+        //Set up sliders
+        let sliders = ['#leftArm', '#rightArm'];
+        for(let slider=0, numSliders=sliders.length; slider<numSliders; ++slider) {
+            $(sliders[slider]).slider();
+            $(sliders[slider]).on("slide", slideEvt => {
+                this.updateAnimation(slider, slideEvt.value);
+            });
+        }
+    }
     createScene() {
         //Init base createsScene
         super.createScene();
@@ -21,25 +33,26 @@ class AnimationApp extends BaseApp {
             }
 
             this.skinnedMesh = new THREE.SkinnedMesh(geometry, new THREE.MultiMaterial(materials));
-            //_this.skinnedMesh.scale.set(1, 1, 1);
             this.scenes[this.currentScene].add(this.skinnedMesh);
 
+            //DEBUG
+            //console.log("Skinned mesh = ", this.skinnedMesh);
 
             //DEBUG
-            //console.log("Skinned mesh = ", _this.skinnedMesh);
+            this.bone = this.scenes[this.currentScene].getObjectByName("Bone");
 
-            //DEBUG
-            this.bone = this.scenes[this.currentScene].getObjectByName("Bone.009");
-
-            /*
-             _this.bodyMesh = new THREE.Mesh(geometry, new THREE.MultiMaterial(materials));
-             _this.scenes[_this.currentScene].add(_this.bodyMesh);
-             */
         });
     }
 
     update() {
         super.update();
+    }
+
+    updateAnimation(slider, value) {
+        //DEBUG
+        console.log("Slider = ", slider);
+        console.log("Value = ", value);
+        this.bone.rotation.y = Math.PI * -value;
     }
 }
 
@@ -56,9 +69,6 @@ $(document).ready(function() {
     app.init(container);
     //app.createGUI();
     app.createScene();
-
-    //Controls
-    $('#leftArm').slider();
 
     app.run();
 });

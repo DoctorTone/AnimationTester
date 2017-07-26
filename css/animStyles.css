@@ -54,3 +54,9 @@ body {
     padding-right: 0;
     padding-left: 0;
 }
+.indent {
+    margin-left: 5%;
+}
+.infoText p {
+    float: left;
+}
