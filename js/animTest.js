@@ -13,13 +13,53 @@ class AnimationApp extends BaseApp {
         super.init(container);
 
         //Set up sliders
-        let sliders = ['#leftArm', '#rightArm'];
-        for(let slider=0, numSliders=sliders.length; slider<numSliders; ++slider) {
-            $(sliders[slider]).slider();
-            $(sliders[slider]).on("slide", slideEvt => {
+        let sliderInfo = [
+            { name: "#hips",
+              axis: "x",
+              scale: 1},
+            { name: "#chest",
+              axis: "z",
+              scale: 1},
+            { name: "#rightLeg",
+              axis: "x",
+              scale: 1},
+            { name: "#rightKnee",
+              axis: "y",
+              scale: 1},
+            { name: "#leftLeg",
+              axis: "x",
+              scale: 1},
+            { name: "#leftKnee",
+              axis: "y",
+              scale: -1},
+            { name: "#leftArm",
+                axis: "z",
+                scale: 1},
+            { name: "#leftShoulder",
+                axis: "x",
+                scale: 1},
+            { name: "#leftElbow",
+                axis: "y",
+                scale: 1},
+            { name: "#rightArm",
+                axis: "z",
+                scale: 1},
+            { name: "#rightShoulder",
+                axis: "x",
+                scale: 1},
+            { name: "#rightElbow",
+                axis: "y",
+                scale: 1}
+        ];
+        let currentSlider;
+        for(let slider=0, numSliders=sliderInfo.length; slider<numSliders; ++slider) {
+            currentSlider = sliderInfo[slider];
+            $(currentSlider.name).slider();
+            $(currentSlider.name).on("slide", slideEvt => {
                 this.updateAnimation(slider, slideEvt.value);
             });
         }
+        this.sliderInfo = sliderInfo;
     }
     createScene() {
         //Init base createsScene
@@ -33,14 +73,24 @@ class AnimationApp extends BaseApp {
             }
 
             this.skinnedMesh = new THREE.SkinnedMesh(geometry, new THREE.MultiMaterial(materials));
-            this.scenes[this.currentScene].add(this.skinnedMesh);
+            this.addToScene(this.skinnedMesh);
 
             //DEBUG
             //console.log("Skinned mesh = ", this.skinnedMesh);
 
             //DEBUG
-            this.bone = this.scenes[this.currentScene].getObjectByName("Bone");
-
+            this.bones = [];
+            const NUM_BONES = 12;
+            let boneName, currentBone;
+            for(let bone=1; bone<=NUM_BONES; ++bone) {
+                boneName = bone > 9 ? "Bone.0" : "Bone.00";
+                currentBone = this.getObjectByName(boneName + bone);
+                if(currentBone) {
+                    this.bones.push(currentBone);
+                } else {
+                    console.log("Couldn't find bone", currentBone);
+                }
+            }
         });
     }
 
@@ -50,9 +100,11 @@ class AnimationApp extends BaseApp {
 
     updateAnimation(slider, value) {
         //DEBUG
-        console.log("Slider = ", slider);
-        console.log("Value = ", value);
-        this.bone.rotation.y = Math.PI * -value;
+        //console.log("Slider = ", slider);
+        //console.log("Value = ", value);
+        let axis = this.sliderInfo[slider].axis;
+        let scale = this.sliderInfo[slider].scale;
+        this.bones[slider].rotation[axis] = Math.PI * value * scale;
     }
 }
 

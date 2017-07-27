@@ -145,6 +145,14 @@ class BaseApp {
         return this.scenes.length-1;
     }
 
+    addToScene(object) {
+        this.scenes[this.currentScene].add(object);
+    }
+
+    getObjectByName(name) {
+        return this.scenes[this.currentScene].getObjectByName(name);
+    }
+
     addDraggableObject(object) {
         this.draggableObjects.push(object);
     }
