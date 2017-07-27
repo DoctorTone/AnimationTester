@@ -66,7 +66,7 @@ class AnimationApp extends BaseApp {
         super.createScene();
 
         this.loader = new THREE.JSONLoader();
-        this.loader.load("./models/Alien_Rigged2.json", (geometry, materials) => {
+        this.loader.load("./models/Alien_Rigged9.json", (geometry, materials) => {
 
             for(let k in materials) {
                 materials[k].skinning = true;
