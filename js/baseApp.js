@@ -43,14 +43,11 @@ class BaseApp {
         this.renderer.setClearColor(0x5c5f64, 1.0);
         this.renderer.shadowMapEnabled = true;
 
-        this.width = this.container.clientWidth;
-        this.height = window.innerHeight;
-
-        this.renderer.setSize(this.width, this.height);
+        this.renderer.setSize(this.container.clientWidth, window.innerHeight);
         this.container.appendChild( this.renderer.domElement );
 
         window.addEventListener('keydown', event => {
-            this.keydown(event);
+            this.keyDown(event);
         }, false);
 
         window.addEventListener('resize', event => {
@@ -110,10 +107,10 @@ class BaseApp {
 
     windowResize(event) {
         //Handle window resize
-        this.camera.aspect = this.width / this.height;
+        this.camera.aspect = this.container.clientWidth / window.innerHeight;
         this.camera.updateProjectionMatrix();
 
-        this.renderer.setSize( this.width, this.height);
+        this.renderer.setSize( this.container.clientWidth, window.innerHeight);
     }
 
     createScene() {
