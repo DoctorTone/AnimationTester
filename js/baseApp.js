@@ -41,10 +41,13 @@ class BaseApp {
     createRenderer() {
         this.renderer = new THREE.WebGLRenderer( {antialias : true, alpha: true});
         this.renderer.setClearColor(0x7d818c, 1.0);
-        this.renderer.shadowMapEnabled = true;
+        this.renderer.shadowMap.enabled = true;
 
         this.renderer.setSize(this.container.clientWidth, window.innerHeight);
         this.container.appendChild( this.renderer.domElement );
+
+        this.renderer.shadowMap.enabled = true;
+        this.renderer.shadowMap.type = THREE.PCFShadowMap;
 
         window.addEventListener('keydown', event => {
             this.keyDown(event);
@@ -120,24 +123,37 @@ class BaseApp {
         let ambientLight = new THREE.AmbientLight(0x383838);
         scene.add(ambientLight);
 
-        /*
-         var spotLight = new THREE.SpotLight(0xffffff);
-         spotLight.position.set(100, 100, 200);
-         spotLight.intensity = 1;
-         this.scene.add(spotLight);
-         */
+
+        const SHADOW_MAP_WIDTH = 2048, SHADOW_MAP_HEIGHT = 1024;
+
+        let spotLight = new THREE.SpotLight(0xffffff, 1, 0, Math.PI/2);
+        spotLight.position.set(100, 100, 100);
+        spotLight.target.position.set(0, 0, 0);
+
+        spotLight.castShadow = true;
+
+        spotLight.shadow = new THREE.LightShadow( new THREE.PerspectiveCamera( 45, 1, 0.1, 300 ) );
+        spotLight.shadow.bias = 0.0001;
+
+        spotLight.shadow.mapSize.width = SHADOW_MAP_WIDTH;
+        spotLight.shadow.mapSize.height = SHADOW_MAP_HEIGHT;
+
+        scene.add(spotLight);
 
         /*
-         var directionalLight = new THREE.DirectionalLight( 0xffffff, 1.0 );
-         directionalLight.position.set( 1, 1, 1 );
-         this.scene.add( directionalLight );
+         let directionalLight = new THREE.DirectionalLight( 0xffffff, 1.0 );
+         directionalLight.position.set( 20, 20, 20 );
+         directionalLight.name = "sunlight";
+         scene.add( directionalLight );
          */
 
 
+        /*
         let pointLight = new THREE.PointLight(0xffffff);
         pointLight.position.set(0,100,100);
         pointLight.name = 'PointLight';
         scene.add(pointLight);
+        */
 
         return this.scenes.length-1;
     }

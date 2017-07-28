@@ -12,6 +12,8 @@ class AnimationApp extends BaseApp {
     init(container) {
         super.init(container);
 
+        this.shadowObjects = [];
+
         //Set up sliders
         let sliderInfo = [
             { name: "#hips",
@@ -65,6 +67,22 @@ class AnimationApp extends BaseApp {
         //Init base createsScene
         super.createScene();
 
+        //Shadows
+        /*
+        let planeConstant = 0.01;
+        let normalVector = new THREE.Vector3(0, 1, 0);
+        this.groundPlane = new THREE.Plane(normalVector, planeConstant);
+        this.lightPosition = new THREE.Vector4();
+        let sunlight = this.getObjectByName("sunlight");
+        if(!sunlight) {
+            console.log("Couldn't get light!");
+        }
+        this.lightPosition.x = sunlight.position.x;
+        this.lightPosition.y = sunlight.position.y;
+        this.lightPosition.z = sunlight.position.z;
+        this.lightPosition.w = 0.001;
+        */
+
         this.loader = new THREE.JSONLoader();
         this.loader.load("./models/Alien_Rigged9.json", (geometry, materials) => {
 
@@ -73,16 +91,39 @@ class AnimationApp extends BaseApp {
             }
 
             this.skinnedMesh = new THREE.SkinnedMesh(geometry, new THREE.MultiMaterial(materials));
+            this.skinnedMesh.castShadow = true;
+            this.skinnedMesh.receiveShadow = false;
+
             let parent = new THREE.Object3D();
-            parent.add(this.skinnedMesh);
+            //parent.add(this.skinnedMesh);
             parent.rotation.y = Math.PI/8;
             this.addToScene(parent);
             this.parent = parent;
 
             //DEBUG
+            let cubeGeom = new THREE.BoxBufferGeometry(5, 5, 5);
+            let cubeMat = new THREE.MeshPhongMaterial( {color: 0xff0000});
+            let cube = new THREE.Mesh(cubeGeom, cubeMat);
+            cube.position.y = 2.51;
+            cube.castShadow = true;
+            cube.receiveShadow = false;
+            parent.add(cube);
+            //let cubeShadow = new THREE.ShadowMesh(cube);
+            //parent.add(cubeShadow);
+            //this.cubeShadow = cubeShadow;
+
+            //Shadows
+            /*
+            let meshShadow = new THREE.ShadowMesh(this.skinnedMesh);
+            parent.add(meshShadow);
+            this.shadowObjects.push(meshShadow);
+            */
+
+            //DEBUG
             //console.log("Skinned mesh = ", this.skinnedMesh);
 
             //DEBUG
+            /*
             this.bones = [];
             const NUM_BONES = 12;
             let boneName, currentBone;
@@ -95,6 +136,7 @@ class AnimationApp extends BaseApp {
                     console.log("Couldn't find bone", currentBone);
                 }
             }
+            */
         });
 
         this.addGround();
@@ -104,15 +146,19 @@ class AnimationApp extends BaseApp {
         //Ground plane
         const GROUND_WIDTH = 1000, GROUND_HEIGHT = 640, SEGMENTS = 16;
         let groundGeom = new THREE.PlaneBufferGeometry(GROUND_WIDTH, GROUND_HEIGHT, SEGMENTS, SEGMENTS);
-        let groundMat = new THREE.MeshLambertMaterial( {color: 0x7d818c} );
+        let groundMat = new THREE.MeshPhongMaterial( {color: 0x7d818c} );
         let ground = new THREE.Mesh(groundGeom, groundMat);
         ground.name = "Ground";
         ground.rotation.x = -Math.PI/2;
+        ground.castShadow = false;
+        ground.receiveShadow = true;
         this.addToScene(ground);
     }
 
     update() {
         super.update();
+
+
     }
 
     updateAnimation(slider, value) {
