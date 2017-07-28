@@ -73,7 +73,11 @@ class AnimationApp extends BaseApp {
             }
 
             this.skinnedMesh = new THREE.SkinnedMesh(geometry, new THREE.MultiMaterial(materials));
-            this.addToScene(this.skinnedMesh);
+            let parent = new THREE.Object3D();
+            parent.add(this.skinnedMesh);
+            parent.rotation.y = Math.PI/8;
+            this.addToScene(parent);
+            this.parent = parent;
 
             //DEBUG
             //console.log("Skinned mesh = ", this.skinnedMesh);
@@ -92,6 +96,19 @@ class AnimationApp extends BaseApp {
                 }
             }
         });
+
+        this.addGround();
+    }
+
+    addGround() {
+        //Ground plane
+        const GROUND_WIDTH = 1000, GROUND_HEIGHT = 640, SEGMENTS = 16;
+        let groundGeom = new THREE.PlaneBufferGeometry(GROUND_WIDTH, GROUND_HEIGHT, SEGMENTS, SEGMENTS);
+        let groundMat = new THREE.MeshLambertMaterial( {color: 0x7d818c} );
+        let ground = new THREE.Mesh(groundGeom, groundMat);
+        ground.name = "Ground";
+        ground.rotation.x = -Math.PI/2;
+        this.addToScene(ground);
     }
 
     update() {
