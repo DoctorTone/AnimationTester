@@ -93,9 +93,10 @@ class AnimationApp extends BaseApp {
             this.skinnedMesh = new THREE.SkinnedMesh(geometry, new THREE.MultiMaterial(materials));
             this.skinnedMesh.castShadow = true;
             this.skinnedMesh.receiveShadow = false;
+            this.skinnedMesh.scale.set(100, 100, 100);
 
             let parent = new THREE.Object3D();
-            //parent.add(this.skinnedMesh);
+            parent.add(this.skinnedMesh);
             parent.rotation.y = Math.PI/8;
             this.addToScene(parent);
             this.parent = parent;
@@ -107,7 +108,7 @@ class AnimationApp extends BaseApp {
             cube.position.y = 2.51;
             cube.castShadow = true;
             cube.receiveShadow = false;
-            parent.add(cube);
+            //parent.add(cube);
             //let cubeShadow = new THREE.ShadowMesh(cube);
             //parent.add(cubeShadow);
             //this.cubeShadow = cubeShadow;
@@ -123,7 +124,7 @@ class AnimationApp extends BaseApp {
             //console.log("Skinned mesh = ", this.skinnedMesh);
 
             //DEBUG
-            /*
+
             this.bones = [];
             const NUM_BONES = 12;
             let boneName, currentBone;
@@ -136,7 +137,7 @@ class AnimationApp extends BaseApp {
                     console.log("Couldn't find bone", currentBone);
                 }
             }
-            */
+
         });
 
         this.addGround();
@@ -144,12 +145,13 @@ class AnimationApp extends BaseApp {
 
     addGround() {
         //Ground plane
-        const GROUND_WIDTH = 1000, GROUND_HEIGHT = 640, SEGMENTS = 16;
-        let groundGeom = new THREE.PlaneBufferGeometry(GROUND_WIDTH, GROUND_HEIGHT, SEGMENTS, SEGMENTS);
+        const GROUND_WIDTH = 1024, GROUND_HEIGHT = 1024, SEGMENTS = 16;
+        let groundGeom = new THREE.PlaneBufferGeometry(GROUND_WIDTH, GROUND_HEIGHT);
         let groundMat = new THREE.MeshPhongMaterial( {color: 0x7d818c} );
         let ground = new THREE.Mesh(groundGeom, groundMat);
         ground.name = "Ground";
         ground.rotation.x = -Math.PI/2;
+        ground.position.z = -100;
         ground.castShadow = false;
         ground.receiveShadow = true;
         this.addToScene(ground);

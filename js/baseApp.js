@@ -127,12 +127,12 @@ class BaseApp {
         const SHADOW_MAP_WIDTH = 2048, SHADOW_MAP_HEIGHT = 1024;
 
         let spotLight = new THREE.SpotLight(0xffffff, 1, 0, Math.PI/2);
-        spotLight.position.set(100, 100, 100);
+        spotLight.position.set(0, 1500, 1000);
         spotLight.target.position.set(0, 0, 0);
 
         spotLight.castShadow = true;
 
-        spotLight.shadow = new THREE.LightShadow( new THREE.PerspectiveCamera( 45, 1, 0.1, 300 ) );
+        spotLight.shadow = new THREE.LightShadow( new THREE.PerspectiveCamera( 50, 1, 1200, 2500 ) );
         spotLight.shadow.bias = 0.0001;
 
         spotLight.shadow.mapSize.width = SHADOW_MAP_WIDTH;
@@ -179,8 +179,8 @@ class BaseApp {
     }
 
     createCamera() {
-        const CAM_X = 0, CAM_Y = 3.2, CAM_Z = 8.6;
-        const NEAR_PLANE = 0.1, FAR_PLANE = 10000;
+        const CAM_X = 290, CAM_Y = 640, CAM_Z = 1200;
+        const NEAR_PLANE = 10.0, FAR_PLANE = 3000;
         this.defaultCamPos = new THREE.Vector3(CAM_X, CAM_Y, CAM_Z);
         this.camera = new THREE.PerspectiveCamera(45, this.container.clientWidth / window.innerHeight, NEAR_PLANE, FAR_PLANE );
         this.camera.position.copy(this.defaultCamPos);
@@ -197,7 +197,7 @@ class BaseApp {
 
         this.controls.keys = [ 65, 83, 68 ];
 
-        const LOOK_X = 0, LOOK_Y = 1.4, LOOK_Z = 0;
+        const LOOK_X = -10, LOOK_Y = 90, LOOK_Z = -30;
         let lookAt = new THREE.Vector3(LOOK_X, LOOK_Y, LOOK_Z);
         this.controls.setLookAt(lookAt);
 
