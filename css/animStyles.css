@@ -5,11 +5,6 @@ body {
     overflow: hidden;
     background-color: #7d818c;
 }
-#WebGL-output {
-    /* set margin to 0 and overflow to hidden, to go fullscreen */
-    margin: 0;
-    overflow: hidden;
-}
 
 .noDisplay {
     display: none;
@@ -19,6 +14,7 @@ body {
 }
 .infoPanel {
     position: absolute;
+    z-index: 10;
 }
 .scroll {
     overflow: auto;
@@ -33,6 +29,15 @@ body {
     top: 25%;
     left: 33.333%;
     width: 33.333%;
+}
+#title {
+    top: 0.5%;
+    left: 0.5%;
+    width: 25%;
+    color: black;
+}
+#title p {
+    font-size: 2vw;
 }
 .controls {
     background-color: silver;
