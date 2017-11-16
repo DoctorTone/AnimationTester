@@ -179,7 +179,7 @@ class BaseApp {
     }
 
     createCamera() {
-        const CAM_X = 290, CAM_Y = 640, CAM_Z = 1200;
+        const CAM_X = 225, CAM_Y = 520, CAM_Z = 930;
         const NEAR_PLANE = 10.0, FAR_PLANE = 3000;
         this.defaultCamPos = new THREE.Vector3(CAM_X, CAM_Y, CAM_Z);
         this.camera = new THREE.PerspectiveCamera(45, this.container.clientWidth / window.innerHeight, NEAR_PLANE, FAR_PLANE );
