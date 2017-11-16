@@ -32,12 +32,28 @@ body {
 }
 #title {
     top: 0.5%;
-    left: 0.5%;
+    left: 1%;
     width: 25%;
     color: black;
 }
 #title p {
     font-size: 2vw;
+}
+#zoomControls {
+    top: 5%;
+    left: 1.5%;
+    width: 7.5%;
+}
+#zoomControls p {
+    font-size: 1.5vw;
+    margin: 0;
+}
+#zoomControls button {
+    width: 45%;
+    padding: 0;
+}
+#zoomControls img {
+    width: 90%;
 }
 .controls {
     background-color: silver;
