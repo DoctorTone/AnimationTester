@@ -77,6 +77,9 @@ body {
 #rotateControls img {
     width: 90%;
 }
+#animationControls {
+    -webkit-touch-callout: none;
+}
 .controls {
     background-color: silver;
     border-top-left-radius: 10px;
@@ -183,5 +186,43 @@ body {
     .controls p {
         font-size: 3vw;
         margin-bottom: 4%;
+    }
+}
+@media (min-width: 1200px) {
+    #title p {
+        font-size: 3vw;
+    }
+    #zoomControls,
+    #rotateControls {
+        width: 7.5%;
+    }
+    #zoomControls p,
+    #rotateControls p {
+        font-size: 2vw;
+    }
+    #rotateControls {
+        top: 25%;
+    }
+    .controls p {
+        font-size: 1.5vw;
+    }
+    #copyright {
+        font-size: 2vw;
+    }
+}
+@media (min-width: 1680px) {
+    #zoomControls,
+    #rotateControls {
+        width: 6%;
+    }
+    #zoomControls p,
+    #rotateControls p {
+        font-size: 1.75vw;
+    }
+    #instructions {
+        width: 5%;
+    }
+    .controls p {
+        font-size: 1.25vw;
     }
 }

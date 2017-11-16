@@ -321,7 +321,7 @@ $(document).ready(function() {
         app.zoomOut(false);
     });
 
-    let elemList = ["title", "zoomControls", "rotateControls", "instructions", "copyright"];
+    let elemList = ["title", "zoomControls", "animationControls", "rotateControls", "instructions", "copyright"];
     app.stopNotifications(elemList);
 
     $('#instructions').on("click", () => {
