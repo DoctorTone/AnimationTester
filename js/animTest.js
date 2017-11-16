@@ -5,6 +5,7 @@
 const ZOOM_SPEED = 0.1;
 const RIGHT = 0;
 const LEFT = 1;
+const MOBILE_WIDTH = 768;
 
 //Extend app from base
 class AnimationApp extends BaseApp {
@@ -227,9 +228,13 @@ class AnimationApp extends BaseApp {
 
 $(document).ready(function() {
     //Make sure we support WebGL
-    if ( ! Detector.webgl ) {
+    if ( !Detector.webgl ) {
         $('#notSupported').show();
         return;
+    }
+
+    if(window.innerWidth < MOBILE_WIDTH) {
+        $('#mainModal').modal();
     }
 
     //Initialise app
@@ -306,6 +311,10 @@ $(document).ready(function() {
 
     zoomOut.on("touchend", () => {
         app.zoomOut(false);
+    });
+
+    $('#instructions').on("click", () => {
+        $('#myModal').modal();
     });
 
     app.run();

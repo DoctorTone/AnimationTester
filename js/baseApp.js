@@ -200,20 +200,6 @@ class BaseApp {
         const LOOK_X = -10, LOOK_Y = 90, LOOK_Z = -30;
         let lookAt = new THREE.Vector3(LOOK_X, LOOK_Y, LOOK_Z);
         this.controls.setLookAt(lookAt);
-
-        //Draggable
-        this.dragControls = new THREE.DragControls(this.draggableObjects, this.camera, this.renderer.domElement);
-        this.dragControls.addEventListener( 'dragstart', event => {
-            //DEBUG
-            console.log("Object = ", event.object);
-            this.controls.enabled = false;
-            this.setDraggedObject(event.object);
-        } );
-
-        this.dragControls.addEventListener( 'dragend', event => {
-            this.controls.enabled = true;
-            this.clearDraggedObject();
-        });
     }
 
     setCamera(cameraProp) {

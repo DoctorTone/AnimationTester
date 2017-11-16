@@ -20,32 +20,35 @@ body {
     overflow: auto;
 }
 #notSupported {
-    background: #a9434a;
+    top: 20%;
+    left: 20%;
+    width: 60%;
+    background-color: #3e3e3e;
+    color: white;
+    font-size: 1.25vw;
     border-radius: 15px;
-    color: black;
-    padding: 2%;
+    padding: 1%;
+    z-index: 10;
 }
-#notSupported {
-    top: 25%;
-    left: 33.333%;
-    width: 33.333%;
+#notSupported p img {
+    width: 50%;
 }
 #title {
     top: 0.5%;
-    left: 1%;
-    width: 25%;
+    left: 2.5%;
+    width: 40%;
     color: black;
 }
 #title p {
-    font-size: 2vw;
+    font-size: 4.5vw;
 }
 #zoomControls {
     top: 5%;
     left: 1.5%;
-    width: 7.5%;
+    width: 15%;
 }
 #zoomControls p {
-    font-size: 1.5vw;
+    font-size: 4vw;
     margin: 0;
 }
 #zoomControls button {
@@ -58,10 +61,10 @@ body {
 #rotateControls {
     top: 15%;
     left: 1.5%;
-    width: 7.5%;
+    width: 15%;
 }
 #rotateControls p {
-    font-size: 1.5vw;
+    font-size: 4vw;
     margin: 0;
 }
 #rotateControls button {
@@ -98,12 +101,21 @@ body {
 .indentText div {
     margin-bottom: 3%;
 }
+.slider.slider-horizontal {
+    width: 90%;
+}
 #instructions {
     bottom: 1%;
     left: 1%;
-    width: 5%;
+    width: 10%;
 }
 #instructions img {
     width: 100%;
+}
+#copyright {
+    left: 15%;
+    bottom: 1%;
+    color: white;
+    font-size: 2.5vw;
 }
 
