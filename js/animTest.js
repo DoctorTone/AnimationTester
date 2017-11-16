@@ -2,11 +2,21 @@
  * Created by DrTone on 21/02/2017.
  */
 
+const ZOOM_SPEED = 10;
+const RIGHT = 0;
+const LEFT = 1;
 
 //Extend app from base
 class AnimationApp extends BaseApp {
     constructor() {
         super();
+
+        this.cameraRotate = false;
+        this.rotSpeed = Math.PI/20;
+        this.rotDirection = 1;
+        this.zoomingIn = false;
+        this.zoomingOut = false;
+        this.zoomSpeed = ZOOM_SPEED;
     }
 
     init(container) {
@@ -67,6 +77,12 @@ class AnimationApp extends BaseApp {
         //Init base createsScene
         super.createScene();
 
+        //Root node
+        let root = new THREE.Object3D();
+        root.name = "root";
+        this.addToScene(root);
+        this.root = root;
+
         //Shadows
         /*
         let planeConstant = 0.01;
@@ -98,7 +114,7 @@ class AnimationApp extends BaseApp {
             let parent = new THREE.Object3D();
             parent.add(this.skinnedMesh);
             parent.rotation.y = Math.PI/8;
-            this.addToScene(parent);
+            this.root.add(parent);
             this.parent = parent;
 
             //DEBUG
@@ -154,13 +170,22 @@ class AnimationApp extends BaseApp {
         ground.position.z = -100;
         ground.castShadow = false;
         ground.receiveShadow = true;
-        this.addToScene(ground);
+        this.root.add(ground);
     }
 
     update() {
+        let delta = this.clock.getDelta();
+
+        if(this.cameraRotate) {
+            this.root.rotation.y += (this.rotSpeed * this.rotDirection * delta);
+        }
+
         super.update();
+    }
 
-
+    rotateCamera(status, direction) {
+        this.rotDirection = direction === RIGHT ? 1 : -1;
+        this.cameraRotate = status;
     }
 
     updateAnimation(slider, value) {
@@ -184,8 +209,45 @@ $(document).ready(function() {
     let container = document.getElementById("WebGL-output");
     let app = new AnimationApp();
     app.init(container);
-    //app.createGUI();
     app.createScene();
+
+    //GUI callbacks
+    let camRight = $('#camRight');
+    let camLeft = $('#camLeft');
+    let zoomIn = $('#zoomIn');
+    let zoomOut = $('#zoomOut');
+
+    camRight.on("mousedown", function() {
+        app.rotateCamera(true, RIGHT);
+    });
+
+    camRight.on("mouseup", function() {
+        app.rotateCamera(false);
+    });
+
+    camRight.on("touchstart", function() {
+        app.rotateCamera(true, RIGHT);
+    });
+
+    camRight.on("touchend", function() {
+        app.rotateCamera(false);
+    });
+
+    camLeft.on("mousedown", function() {
+        app.rotateCamera(true, LEFT);
+    });
+
+    camLeft.on("mouseup", function() {
+        app.rotateCamera(false);
+    });
+
+    camLeft.on("touchstart", function() {
+        app.rotateCamera(true, LEFT);
+    });
+
+    camLeft.on("touchend", function() {
+        app.rotateCamera(false);
+    });
 
     app.run();
 });
