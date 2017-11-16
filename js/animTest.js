@@ -2,7 +2,7 @@
  * Created by DrTone on 21/02/2017.
  */
 
-const ZOOM_SPEED = 10;
+const ZOOM_SPEED = 0.1;
 const RIGHT = 0;
 const LEFT = 1;
 
@@ -17,6 +17,9 @@ class AnimationApp extends BaseApp {
         this.zoomingIn = false;
         this.zoomingOut = false;
         this.zoomSpeed = ZOOM_SPEED;
+
+        //Temp variables
+        this.tempVec = new THREE.Vector3();
     }
 
     init(container) {
@@ -180,12 +183,36 @@ class AnimationApp extends BaseApp {
             this.root.rotation.y += (this.rotSpeed * this.rotDirection * delta);
         }
 
+        if(this.zoomingIn) {
+            this.tempVec.sub(this.camera.position, this.controls.getLookAt());
+            this.tempVec.multiplyScalar(this.zoomSpeed * delta);
+            this.root.position.add(this.tempVec);
+            //DEBUG
+            console.log("Root = ", this.root.position);
+        }
+
+        if(this.zoomingOut) {
+            this.tempVec.sub(this.camera.position, this.controls.getLookAt());
+            this.tempVec.multiplyScalar(this.zoomSpeed * delta);
+            this.root.position.sub(this.tempVec);
+            //DEBUG
+            console.log("Root = ", this.root.position);
+        }
+
         super.update();
     }
 
     rotateCamera(status, direction) {
         this.rotDirection = direction === RIGHT ? 1 : -1;
         this.cameraRotate = status;
+    }
+
+    zoomIn(zoom) {
+        this.zoomingIn = zoom;
+    }
+
+    zoomOut(zoom) {
+        this.zoomingOut = zoom;
     }
 
     updateAnimation(slider, value) {
@@ -247,6 +274,38 @@ $(document).ready(function() {
 
     camLeft.on("touchend", function() {
         app.rotateCamera(false);
+    });
+
+    zoomIn.on("mousedown", () => {
+        app.zoomIn(true);
+    });
+
+    zoomIn.on("mouseup", () => {
+        app.zoomIn(false);
+    });
+
+    zoomIn.on("touchstart", () => {
+        app.zoomIn(true);
+    });
+
+    zoomIn.on("touchend", () => {
+        app.zoomIn(false);
+    });
+
+    zoomOut.on("mousedown", () => {
+        app.zoomOut(true);
+    });
+
+    zoomOut.on("mouseup", () => {
+        app.zoomOut(false);
+    });
+
+    zoomOut.on("touchstart", () => {
+        app.zoomOut(true);
+    });
+
+    zoomOut.on("touchend", () => {
+        app.zoomOut(false);
     });
 
     app.run();
