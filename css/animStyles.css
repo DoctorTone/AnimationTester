@@ -98,4 +98,12 @@ body {
 .indentText div {
     margin-bottom: 3%;
 }
+#instructions {
+    bottom: 1%;
+    left: 1%;
+    width: 5%;
+}
+#instructions img {
+    width: 100%;
+}
 
