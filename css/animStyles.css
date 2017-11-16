@@ -46,7 +46,7 @@ body {
 #zoomControls {
     top: 5%;
     left: 1.5%;
-    width: 15%;
+    width: 20%;
     -webkit-touch-callout: none;
 }
 #zoomControls p {
@@ -63,7 +63,7 @@ body {
 #rotateControls {
     top: 15%;
     left: 1.5%;
-    width: 15%;
+    width: 20%;
     -webkit-touch-callout: none;
 }
 #rotateControls p {
