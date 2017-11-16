@@ -156,3 +156,32 @@ body {
         width: 7.5%;
     }
 }
+@media (min-width: 568px) and (orientation: portrait) {
+    #title p {
+        font-size: 4.75vw;
+    }
+    #zoomControls,
+    #rotateControls {
+        width: 17.5%;
+    }
+    #zoomControls {
+        top: 7.5%;
+    }
+    #zoomControls p,
+    #rotateControls p {
+        font-size: 4vw;
+    }
+    #rotateControls {
+        top: 17.5%;
+    }
+    #instructions {
+        width: 10%;
+    }
+    #copyright {
+        font-size: 3vw;
+    }
+    .controls p {
+        font-size: 3vw;
+        margin-bottom: 4%;
+    }
+}
