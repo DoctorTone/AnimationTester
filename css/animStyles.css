@@ -38,6 +38,7 @@ body {
     left: 2.5%;
     width: 40%;
     color: black;
+    -webkit-touch-callout: none;
 }
 #title p {
     font-size: 4.5vw;
@@ -46,6 +47,7 @@ body {
     top: 5%;
     left: 1.5%;
     width: 15%;
+    -webkit-touch-callout: none;
 }
 #zoomControls p {
     font-size: 4vw;
@@ -62,6 +64,7 @@ body {
     top: 15%;
     left: 1.5%;
     width: 15%;
+    -webkit-touch-callout: none;
 }
 #rotateControls p {
     font-size: 4vw;
@@ -109,6 +112,7 @@ body {
     bottom: 1%;
     left: 1%;
     width: 10%;
+    -webkit-touch-callout: none;
 }
 #instructions img {
     width: 100%;
@@ -117,6 +121,7 @@ body {
     left: 15%;
     bottom: 1%;
     color: white;
-    font-size: 2.5vw;
+    font-size: 2.75vw;
+    -webkit-touch-callout: none;
 }
 

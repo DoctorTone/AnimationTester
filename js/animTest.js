@@ -224,6 +224,14 @@ class AnimationApp extends BaseApp {
         let scale = this.sliderInfo[slider].scale;
         this.bones[slider].rotation[axis] = Math.PI * value * scale;
     }
+
+    stopNotifications(elemList) {
+        for(let i=0, numElems=elemList.length; i<numElems; ++i) {
+            $('#' + elemList[i]).contextmenu(() => {
+                return false;
+            });
+        }
+    }
 }
 
 $(document).ready(function() {
@@ -312,6 +320,9 @@ $(document).ready(function() {
     zoomOut.on("touchend", () => {
         app.zoomOut(false);
     });
+
+    let elemList = ["title", "zoomControls", "rotateControls", "instructions", "copyright"];
+    app.stopNotifications(elemList);
 
     $('#instructions').on("click", () => {
         $('#myModal').modal();
