@@ -20,18 +20,17 @@ body {
     overflow: auto;
 }
 #notSupported {
-    top: 20%;
-    left: 20%;
-    width: 60%;
+    top: 40%;
+    left: 12.5%;
+    width: 75%;
     background-color: #3e3e3e;
     color: white;
-    font-size: 1.25vw;
+    font-size: 2.5vw;
     border-radius: 15px;
     padding: 1%;
-    z-index: 10;
 }
 #notSupported p img {
-    width: 50%;
+    width: 25%;
 }
 #title {
     top: 0.5%;
@@ -177,6 +176,13 @@ body {
     #waiting img {
         width: 7.5%;
     }
+    #notSupported {
+        top: 35%;
+        font-size: 2.25vw;
+    }
+    #notSupported p img {
+        width: 20%;
+    }
 }
 @media (min-width: 568px) and (orientation: portrait) {
     #title p {
@@ -213,10 +219,26 @@ body {
     #waiting p {
         font-size: 3.5vw;
     }
+    #notSupported {
+        top: 35%;
+        font-size: 2.5vw;
+    }
+    #notSupported p img {
+        width: 25%;
+    }
 }
 @media (min-width: 768px) {
     #waiting img {
         width: 7.5%;
+    }
+}
+@media (min-width: 768px) and (orientation: portrait) {
+    #notSupported {
+        top: 35%;
+        font-size: 2.75vw;
+    }
+    #notSupported p img {
+        width: 30%;
     }
 }
 @media (min-width: 1200px) {
@@ -250,6 +272,13 @@ body {
     #waiting img {
         width: 5%;
     }
+    #notSupported {
+        top: 30%;
+        font-size: 2.25vw;
+    }
+    #notSupported p img {
+        width: 20%;
+    }
 }
 @media (min-width: 1680px) {
     #zoomControls,
@@ -265,5 +294,12 @@ body {
     }
     .controls p {
         font-size: 1.25vw;
+    }
+    #notSupported {
+        top: 30%;
+        font-size: 1.75vw;
+    }
+    #notSupported p img {
+        width: 12.5%;
     }
 }
