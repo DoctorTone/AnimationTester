@@ -158,6 +158,8 @@ class AnimationApp extends BaseApp {
                 }
             }
 
+            //Model loaded
+            $('#waiting').hide();
         });
 
         this.addGround();

@@ -127,6 +127,22 @@ body {
     font-size: 2.75vw;
     -webkit-touch-callout: none;
 }
+#waiting {
+    top: 50%;
+    width: 60%;
+    left: 20%;
+    background-color: #c7c7c7;
+    color: black;
+    border-radius: 15px;
+    padding: 1%;
+    border: 2px solid black;
+}
+#waiting p {
+    font-size: 2.5vw;
+}
+#waiting img {
+    width: 15%;
+}
 /* Media queries */
 @media (min-width: 568px) {
     .controls {
@@ -158,6 +174,9 @@ body {
     #instructions {
         width: 7.5%;
     }
+    #waiting img {
+        width: 7.5%;
+    }
 }
 @media (min-width: 568px) and (orientation: portrait) {
     #title p {
@@ -187,6 +206,18 @@ body {
         font-size: 3vw;
         margin-bottom: 4%;
     }
+    #waiting {
+        width: 75%;
+        left: 12.5%;
+    }
+    #waiting p {
+        font-size: 3.5vw;
+    }
+}
+@media (min-width: 768px) {
+    #waiting img {
+        width: 7.5%;
+    }
 }
 @media (min-width: 1200px) {
     #title p {
@@ -208,6 +239,16 @@ body {
     }
     #copyright {
         font-size: 2vw;
+    }
+    #waiting {
+        width: 50%;
+        left: 25%;
+    }
+    #waiting p {
+        font-size: 2vw;
+    }
+    #waiting img {
+        width: 5%;
     }
 }
 @media (min-width: 1680px) {
