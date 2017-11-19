@@ -110,6 +110,10 @@ body {
 .slider.slider-horizontal {
     width: 90%;
 }
+.slider-handle {
+    width: 25px;
+    height: 25px;
+}
 #instructions {
     bottom: 1%;
     left: 1%;
