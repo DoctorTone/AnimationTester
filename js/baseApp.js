@@ -195,6 +195,11 @@ class BaseApp {
         this.controls.staticMoving = true;
         this.controls.dynamicDampingFactor = 0.3;
 
+        this.controls.noPan = true;
+        this.controls.noRoll = true;
+        this.controls.noRotate = true;
+        this.controls.noZoom = true;
+
         this.controls.keys = [ 65, 83, 68 ];
 
         const LOOK_X = -10, LOOK_Y = 90, LOOK_Z = -30;
