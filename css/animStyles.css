@@ -125,9 +125,9 @@ body {
 }
 #copyright {
     left: 15%;
-    bottom: 1%;
+    bottom: 1.5%;
     color: white;
-    font-size: 2.75vw;
+    font-size: 3.5vw;
     -webkit-touch-callout: none;
 }
 #waiting {
@@ -187,6 +187,10 @@ body {
     #notSupported p img {
         width: 20%;
     }
+    #copyright {
+        font-size: 2.25vw;
+        left: 11%;
+    }
 }
 @media (min-width: 568px) and (orientation: portrait) {
     #title p {
@@ -210,7 +214,8 @@ body {
         width: 10%;
     }
     #copyright {
-        font-size: 3vw;
+        font-size: 2.75vw;
+        left: 12.5%;
     }
     .controls p {
         font-size: 3vw;
@@ -235,6 +240,10 @@ body {
     #waiting img {
         width: 7.5%;
     }
+    #copyright {
+        font-size: 2vw;
+        left: 10%;
+    }
 }
 @media (min-width: 768px) and (orientation: portrait) {
     #notSupported {
@@ -243,6 +252,10 @@ body {
     }
     #notSupported p img {
         width: 30%;
+    }
+    #copyright {
+        font-size: 2.5vw;
+        left: 12%;
     }
 }
 @media (min-width: 1200px) {
@@ -264,7 +277,8 @@ body {
         font-size: 1.5vw;
     }
     #copyright {
-        font-size: 2vw;
+        left: 7.5%;
+        font-size: 1.5vw;
     }
     #waiting {
         width: 50%;
@@ -308,5 +322,8 @@ body {
     }
     #notSupported p img {
         width: 12.5%;
+    }
+    #copyright {
+        font-size: 1.25vw;
     }
 }
